@@ -155,76 +155,43 @@ function startYTTracking() {
 const kinescopeMilestones = [10, 25, 50, 75, 90];
 const kinescopeFired = new Set();
 
-function initKinescopeAnalytics() {
+window.addEventListener('load', function() {
     const iframe = document.querySelector('#vsl iframe');
-    if (!iframe) return;
+    if (!iframe || typeof Kinescope === 'undefined') return;
 
-    // Используем Kinescope Player API через postMessage
-    function sendToKinescope(method, args) {
-        iframe.contentWindow.postMessage(
-            JSON.stringify({ method, args }),
-            'https://kinescope.io'
-        );
-    }
+    const player = Kinescope.IframePlayer.create(iframe);
 
-    let kinescopeTimer = null;
-    let duration = null;
+    player.on(Kinescope.Events.Play, function() {
+        if (!kinescopeFired.has('play')) {
+            kinescopeFired.add('play');
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'video_play_click',
+                video_title: 'VSL - Reach',
+                video_provider: 'kinescope',
+            });
+        }
+    });
 
-    window.addEventListener('message', function(e) {
-        if (!e.data || typeof e.data !== 'object') return;
-        const type = e.data.type || '';
-
-        // Play
-        if (type === 'KINESCOPE_PLAYER_PLAY_EVENT') {
-            if (!kinescopeFired.has('play')) {
-                kinescopeFired.add('play');
+    player.on(Kinescope.Events.TimeUpdate, function(e) {
+        const duration = e.detail.duration;
+        const currentTime = e.detail.currentTime;
+        if (!duration) return;
+        const percent = Math.floor((currentTime / duration) * 100);
+        kinescopeMilestones.forEach((m) => {
+            if (percent >= m && !kinescopeFired.has(m)) {
+                kinescopeFired.add(m);
                 window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
-                    event: 'video_play_click',
+                    event: 'video_milestone',
                     video_title: 'VSL - Reach',
+                    video_percent: m,
                     video_provider: 'kinescope',
                 });
             }
-
-            // Запускаем polling каждую секунду
-            clearInterval(kinescopeTimer);
-            kinescopeTimer = setInterval(function() {
-                sendToKinescope('getDuration', []);
-                sendToKinescope('getCurrentTime', []);
-            }, 1000);
-        }
-
-        // Пауза / конец
-        if (type === 'KINESCOPE_PLAYER_PAUSE_EVENT' || type === 'KINESCOPE_PLAYER_ENDED_EVENT') {
-            clearInterval(kinescopeTimer);
-        }
-
-        // Ответы на getDuration / getCurrentTime
-        if (e.data.event === 'infoDelivery' && e.data.info) {
-            const info = e.data.info;
-
-            if (info.duration) duration = info.duration;
-
-            if (info.currentTime && duration) {
-                const percent = Math.floor((info.currentTime / duration) * 100);
-                kinescopeMilestones.forEach((m) => {
-                    if (percent >= m && !kinescopeFired.has(m)) {
-                        kinescopeFired.add(m);
-                        window.dataLayer = window.dataLayer || [];
-                        window.dataLayer.push({
-                            event: 'video_milestone',
-                            video_title: 'VSL - Reach',
-                            video_percent: m,
-                            video_provider: 'kinescope',
-                        });
-                    }
-                });
-            }
-        }
+        });
     });
-}
-
-window.addEventListener('load', initKinescopeAnalytics);
+});
 
 // ===== Scroll to video tracking =====
 const scrollTrackFired = new Set();
