@@ -156,37 +156,40 @@ const kinescopeMilestones = [10, 25, 50, 75, 90];
 const kinescopeFired = new Set();
 let kinescopeDuration = null;
 
-window.addEventListener("message", function(e) {
-    if (!e.data || typeof e.data !== "object") return;
+window.addEventListener('message', function(e) {
+    if (!e.data || typeof e.data !== 'object') return;
     const d = e.data;
+    const type = d.type || d.event || '';
 
-    if (d.event === "play") {
-        if (!kinescopeFired.has("play")) {
-            kinescopeFired.add("play");
+    // Play
+    if (type === 'KINESCOPE_PLAYER_PLAY_EVENT' || type === 'play') {
+        if (!kinescopeFired.has('play')) {
+            kinescopeFired.add('play');
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                event: "video_play_click",
-                video_title: "VSL - Reach",
-                video_provider: "kinescope",
+                event: 'video_play_click',
+                video_title: 'VSL - Reach',
+                video_provider: 'kinescope',
             });
         }
     }
 
-    if (d.event === "durationchange" && d.data && d.data.duration) {
+    // Длительность
+    if ((type === 'KINESCOPE_PLAYER_DURATION_CHANGE_EVENT' || type === 'durationchange') && d.data && d.data.duration) {
         kinescopeDuration = d.data.duration;
     }
 
-    if (d.event === "timeupdate" && d.data && d.data.currentTime && kinescopeDuration) {
+    // Прогресс
+    if ((type === 'KINESCOPE_PLAYER_TIME_UPDATE_EVENT' || type === 'timeupdate') && d.data && d.data.currentTime && kinescopeDuration) {
         const percent = Math.floor((d.data.currentTime / kinescopeDuration) * 100);
         kinescopeMilestones.forEach((m) => {
             if (percent >= m && !kinescopeFired.has(m)) {
                 kinescopeFired.add(m);
-                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
-                    event: "video_milestone",
-                    video_title: "VSL - Reach",
+                    event: 'video_milestone',
+                    video_title: 'VSL - Reach',
                     video_percent: m,
-                    video_provider: "kinescope",
+                    video_provider: 'kinescope',
                 });
             }
         });
@@ -216,3 +219,7 @@ const vslSection = document.getElementById("vsl");
 const caseSection = document.getElementById("case");
 if (vslSection) scrollTracker.observe(vslSection);
 if (caseSection) scrollTracker.observe(caseSection);
+
+window.addEventListener('message', function(e) {
+    console.log('MESSAGE:', e.data);
+});
