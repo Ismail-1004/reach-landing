@@ -1,742 +1,383 @@
 <!doctype html>
 <html lang="ru">
-  <head>
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NQQ772TK');
+    </script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="pics/logo.png" type="image/x-icon" />
     <title>Reach - Навык прибыльного органического контента за 4 недели</title>
-    <meta
-      name="description"
-      content="Курс по органическому контенту. Навык прибыльного и качественного органического контента за 4 недели."
-    />
+    <meta name="description" content="Курс по органическому контенту. Навык прибыльного и качественного органического контента за 4 недели." />
+
     <script src="https://www.youtube.com/iframe_api"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              "surface-tint": "#b4c5ff",
-              "surface-dim": "#131313",
-              "tertiary-container": "#bc4800",
-              "on-primary": "#002a78",
-              "inverse-surface": "#e5e2e1",
-              "surface-container": "#201f1f",
-              "surface-bright": "#3a3939",
-              "outline-variant": "#434655",
-              "on-tertiary-container": "#ffede6",
-              "on-tertiary-fixed": "#360f00",
-              "soft-red": "#f87171",
-              "text-primary": "#ffffff",
-              "text-muted": "#8a8a93",
-              "tertiary-fixed-dim": "#ffb596",
-              "on-tertiary-fixed-variant": "#7d2d00",
-              "text-dim": "#5c5c64",
-              "surface-container-lowest": "#0e0e0e",
-              "on-secondary-fixed-variant": "#004395",
-              "error-container": "#93000a",
-              "surface-lifted": "#1a1a1e",
-              "secondary-container": "#0566d9",
-              background: "#131313",
-              "inverse-primary": "#0053db",
-              secondary: "#adc6ff",
-              "on-surface": "#e5e2e1",
-              "on-primary-container": "#eeefff",
-              "surface-container-high": "#2a2a2a",
-              "on-error-container": "#ffdad6",
-              "signal-gold": "#facc15",
-              "primary-container": "#2563eb",
-              "surface-variant": "#353534",
-              "alert-red": "#ef4444",
-              "on-surface-variant": "#c3c6d7",
-              "on-secondary-fixed": "#001a42",
-              "on-tertiary": "#581e00",
-              outline: "#232328",
-              "surface-container-highest": "#353534",
-              "on-primary-fixed": "#00174b",
-              tertiary: "#ffb596",
-              "secondary-fixed-dim": "#adc6ff",
-              "primary-fixed-dim": "#b4c5ff",
-              "on-primary-fixed-variant": "#003ea8",
-              "on-error": "#690005",
-              surface: "#121214",
-              "secondary-fixed": "#d8e2ff",
-              "on-secondary-container": "#e6ecff",
-              primary: "#b4c5ff",
-              "on-background": "#e5e2e1",
-              error: "#ffb4ab",
-              "on-secondary": "#002e6a",
-              "tertiary-fixed": "#ffdbcd",
-              "inverse-on-surface": "#313030",
-              "surface-container-low": "#1c1b1b",
-              "primary-fixed": "#dbe1ff",
-            },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-              card: "16px",
-            },
-            spacing: {
-              "card-padding": "32px",
-              "section-y": "96px",
-              "container-max": "1140px",
-              "section-y-mobile": "72px",
-              unit: "4px",
-              gutter: "24px",
-            },
-            fontFamily: {
-              "display-hero": ["Inter", "sans-serif"],
-              "body-emphasis": ["Inter", "sans-serif"],
-              "display-hero-mobile": ["Inter", "sans-serif"],
-              "label-caps": ["Inter", "sans-serif"],
-              "stat-lg": ["Inter", "sans-serif"],
-              "headline-section-mobile": ["Inter", "sans-serif"],
-              "body-base": ["Inter", "sans-serif"],
-              "headline-section": ["Inter", "sans-serif"],
-            },
-            fontSize: {
-              "display-hero": [
-                "68px",
-                {
-                  lineHeight: "78px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "600",
-                },
-              ],
-              "body-emphasis": [
-                "18px",
-                { lineHeight: "28px", letterSpacing: "0", fontWeight: "500" },
-              ],
-              "display-hero-mobile": [
-                "34px",
-                {
-                  lineHeight: "40px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "600",
-                },
-              ],
-              "label-caps": [
-                "13px",
-                {
-                  lineHeight: "16px",
-                  letterSpacing: "0.18em",
-                  fontWeight: "600",
-                },
-              ],
-              "stat-lg": [
-                "56px",
-                {
-                  lineHeight: "56px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "600",
-                },
-              ],
-              "headline-section-mobile": [
-                "28px",
-                {
-                  lineHeight: "34px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "600",
-                },
-              ],
-              "body-base": [
-                "16px",
-                { lineHeight: "26px", letterSpacing: "0", fontWeight: "400" },
-              ],
-              "headline-section": [
-                "46px",
-                {
-                  lineHeight: "53px",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "600",
-                },
-              ],
-            },
-          },
-        },
-      };
-    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  </head>
 
-  <!-- Google tag (gtag.js) -->
-  <script
-    async
-    src="https://www.googletagmanager.com/gtag/js?id=G-2HWQGY506B"
-  ></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXBB4R32PV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    gtag("config", "G-2HWQGY506B");
-  </script>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-QXBB4R32PV');
+    </script>
+</head>
 
-  <!-- Google Tag Manager -->
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", "GTM-TPFGH9SF");
-  </script>
-  <!-- End Google Tag Manager -->
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQQ772TK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Google Tag Manager (noscript) -->
-  <noscript
-    ><iframe
-      src="https://www.googletagmanager.com/ns.html?id=GTM-TPFGH9SF"
-      height="0"
-      width="0"
-      style="display: none; visibility: hidden"
-    ></iframe
-  ></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <body>
     <!-- ===== NAV ===== -->
     <nav id="nav">
-      <div class="container nav-inner">
-        <div class="nav-left">
-          <a href="#" class="logo"><img src="pics/logo.png" alt="Reach" /></a>
-          <div class="nav-links">
-            <a href="#">Домой</a>
-            <a href="#case">Результат</a>
-            <a href="#faq">Вопросы</a>
-          </div>
-        </div>
-        <a href="#cta" class="btn nav-cta">Оставить заявку</a>
-        <button class="hamburger" id="hamburger" aria-label="Меню">
+        <div class="container nav-inner">
+            <div class="nav-left">
+                <a href="#" class="logo"><img src="pics/logo.png" alt="Reach" /></a>
+                <div class="nav-links">
+                    <a href="#">Домой</a>
+                    <a href="#case">Результат</a>
+                    <a href="#faq">Вопросы</a>
+                </div>
+            </div>
+            <a href="#cta" class="btn nav-cta">Оставить заявку</a>
+            <button class="hamburger" id="hamburger" aria-label="Меню">
           <span></span><span></span><span></span>
         </button>
-      </div>
+        </div>
     </nav>
 
     <!-- ===== HERO ===== -->
     <header class="hero">
-      <div class="container">
-        <h1>
-          Навык прибыльного и качественного органического контента за 4 недели
-        </h1>
-        <p class="hero-subline">
-          <span>Это не курс по продвижению через Instagram Reels</span>
-        </p>
-      </div>
+        <div class="container">
+            <h1>Навык прибыльного и качественного органического контента за 4 недели</h1>
+            <p class="hero-subline">
+                <span>Это не курс по продвижению через Instagram Reels</span>
+            </p>
+        </div>
     </header>
 
     <!-- ===== VSL ===== -->
     <section id="vsl">
-      <div class="container center">
-        <div class="video-wrap fade-in">
-          <!-- REPLACE: paste YouTube embed iframe here -->
-          <iframe
-            src="https://kinescope.io/embed/oT68boePT7kxuwbxAToVVV"
-            allow="
-              autoplay;
-              fullscreen;
-              picture-in-picture;
-              encrypted-media;
-              gyroscope;
-              accelerometer;
-              clipboard-write;
-              screen-wake-lock;
-            "
-            frameborder="0"
-            allowfullscreen
-            width="1920"
-            height="1080"
-          ></iframe>
+        <div class="container center">
+            <div class="video-wrap fade-in">
+                <iframe src="https://kinescope.io/embed/oT68boePT7kxuwbxAToVVV" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen width="1920" height="1080"></iframe>
+            </div>
+            <a href="#cta" class="btn btn-lg fade-in">Оставить заявку</a>
         </div>
-        <a href="#cta" class="btn btn-lg fade-in">Оставить заявку</a>
-      </div>
     </section>
 
     <!-- ===== PAIN ===== -->
     <section>
-      <div class="container">
-        <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
-          Тебе знакома эта ситуация?
-        </h2>
-        <div class="grid-2">
-          <div class="card pain-card fade-in">
-            <span class="x">✕</span>Снимаешь контент, но он не приносит клиентов
-          </div>
-          <div class="card pain-card fade-in">
-            <span class="x">✕</span>Не знаешь с чего начать и боишься камеры
-          </div>
-          <div class="card pain-card fade-in">
-            <span class="x">✕</span>Видишь как другие растут органически, но не
-            понимаешь как
-          </div>
-          <div class="card pain-card fade-in">
-            <span class="x">✕</span>Пробовал(а) сам(а) - результата нет
-          </div>
+        <div class="container">
+            <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
+                Тебе знакома эта ситуация?
+            </h2>
+            <div class="grid-2">
+                <div class="card pain-card fade-in">
+                    <span class="x">✕</span>Снимаешь контент, но он не приносит клиентов
+                </div>
+                <div class="card pain-card fade-in">
+                    <span class="x">✕</span>Не знаешь с чего начать и боишься камеры
+                </div>
+                <div class="card pain-card fade-in">
+                    <span class="x">✕</span>Видишь как другие растут органически, но не понимаешь как
+                </div>
+                <div class="card pain-card fade-in">
+                    <span class="x">✕</span>Пробовал(а) сам(а) - результата нет
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- ===== SOLUTION ===== -->
     <section>
-      <div class="container">
-        <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
-          Reach - это не очередной курс по СММ
-        </h2>
-        <div class="grid-3">
-          <div class="card sol-card fade-in">
-            <div class="sol-num">01</div>
-            <div class="sol-label">СИСТЕМА</div>
-            <p>Пошаговый фреймворк создания контента который продаёт</p>
-          </div>
-          <div class="card sol-card fade-in">
-            <div class="sol-num">02</div>
-            <div class="sol-label">ПРАКТИКА</div>
-            <p>Снимаешь и публикуешь с первой недели под менторингом</p>
-          </div>
-          <div class="card sol-card fade-in">
-            <div class="sol-num">03</div>
-            <div class="sol-label">РЕЗУЛЬТАТ</div>
-            <p>Органический поток заявок без рекламного бюджета</p>
-          </div>
+        <div class="container">
+            <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
+                Reach - это не очередной курс по СММ
+            </h2>
+            <div class="grid-3">
+                <div class="card sol-card fade-in">
+                    <div class="sol-num">01</div>
+                    <div class="sol-label">СИСТЕМА</div>
+                    <p>Пошаговый фреймворк создания контента который продаёт</p>
+                </div>
+                <div class="card sol-card fade-in">
+                    <div class="sol-num">02</div>
+                    <div class="sol-label">ПРАКТИКА</div>
+                    <p>Снимаешь и публикуешь с первой недели под менторингом</p>
+                </div>
+                <div class="card sol-card fade-in">
+                    <div class="sol-num">03</div>
+                    <div class="sol-label">РЕЗУЛЬТАТ</div>
+                    <p>Органический поток заявок без рекламного бюджета</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- ===== CASE STUDY ===== -->
     <section id="case">
-      <div class="container center">
-        <span class="label fade-in">Кейс ученика</span>
-        <div class="video-wrap yt-lite fade-in" data-id="C7lnnsg-kSg">
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/C7lnnsg-kSg?enablejsapi=1"
-            title="YouTube video player"
-            frameborder="0"
-            allow="
-              accelerometer;
-              autoplay;
-              clipboard-write;
-              encrypted-media;
-              gyroscope;
-              picture-in-picture;
-              web-share;
-            "
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-          <button class="yt-play" aria-label="Смотреть видео"></button>
-        </div>
-        <div class="ba-grid fade-in">
-          <figure class="ba">
-            <img
-              src="pics/res1.JPG"
-              alt="Профиль до - 65 подписчиков"
-              loading="lazy"
-            />
-            <figcaption class="ba-before">До</figcaption>
-          </figure>
-          <figure class="ba">
-            <img
-              src="pics/res2.PNG"
-              alt="Профиль после - 40,3 тыс. подписчиков"
-              loading="lazy"
-            />
-            <figcaption class="ba-after">После</figcaption>
-          </figure>
-        </div>
-        <div class="metrics">
-          <div class="metric fade-in">
-            <div class="num"><span class="count" data-to="5">0</span></div>
-            <div class="cap">месяцев</div>
-          </div>
-          <div class="metric fade-in">
-            <div class="num">
-              <span class="pre">от </span
-              ><span class="count" data-to="200000" data-sep="1">0</span
-              ><span class="suf"> ₽</span>
+        <div class="container center">
+            <span class="label fade-in">Кейс ученика</span>
+            <div class="video-wrap yt-lite fade-in" data-id="C7lnnsg-kSg">
+                <iframe id="yt-case-iframe" width="560" height="315" src="https://www.youtube.com/embed/C7lnnsg-kSg?enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <button class="yt-play" aria-label="Смотреть видео"></button>
             </div>
-            <div class="cap">доход в месяц</div>
-          </div>
-          <div class="metric fade-in">
-            <div class="num">
-              <span class="count" data-to="40">0</span
-              ><span class="suf"> тыс.</span>
+            <div class="ba-grid fade-in">
+                <figure class="ba">
+                    <img src="pics/res1.JPG" alt="Профиль до - 65 подписчиков" loading="lazy" />
+                    <figcaption class="ba-before">До</figcaption>
+                </figure>
+                <figure class="ba">
+                    <img src="pics/res2.PNG" alt="Профиль после - 40,3 тыс. подписчиков" loading="lazy" />
+                    <figcaption class="ba-after">После</figcaption>
+                </figure>
             </div>
-            <div class="cap">подписчиков</div>
-          </div>
-          <div class="metric fade-in">
-            <div class="num">
-              <span class="count" data-to="2">0</span
-              ><span class="suf"> млн</span>
+            <div class="metrics">
+                <div class="metric fade-in">
+                    <div class="num"><span class="count" data-to="5">0</span></div>
+                    <div class="cap">месяцев</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="num">
+                        <span class="pre">от </span><span class="count" data-to="200000" data-sep="1">0</span><span class="suf"> ₽</span>
+                    </div>
+                    <div class="cap">доход в месяц</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="num">
+                        <span class="count" data-to="40">0</span><span class="suf"> тыс.</span>
+                    </div>
+                    <div class="cap">подписчиков</div>
+                </div>
+                <div class="metric fade-in">
+                    <div class="num">
+                        <span class="count" data-to="2">0</span><span class="suf"> млн</span>
+                    </div>
+                    <div class="cap">просмотров - топ видео</div>
+                </div>
             </div>
-            <div class="cap">просмотров - топ видео</div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- ===== PROGRAM ===== -->
     <section>
-      <div class="container">
-        <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
-          Что входит в программу
-        </h2>
-        <div class="timeline">
-          <div class="week-card fade-in">
-            <div class="week-num">Неделя 1</div>
-            <h3>Фундамент</h3>
-            <p>Стратегия, ниша, формат</p>
-          </div>
-          <div class="week-card fade-in">
-            <div class="week-num">Неделя 2</div>
-            <h3>Производство</h3>
-            <p>Съёмка, монтаж, публикация</p>
-          </div>
-          <div class="week-card fade-in">
-            <div class="week-num">Неделя 3</div>
-            <h3>Система</h3>
-            <p>Воронка, хуки, удержание</p>
-          </div>
-          <div class="week-card fade-in">
-            <div class="week-num">Неделя 4</div>
-            <h3>Масштаб</h3>
-            <p>Автоматизация и рост</p>
-          </div>
+        <div class="container">
+            <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
+                Что входит в программу
+            </h2>
+            <div class="timeline">
+                <div class="week-card fade-in">
+                    <div class="week-num">Неделя 1</div>
+                    <h3>Фундамент</h3>
+                    <p>Стратегия, ниша, формат</p>
+                </div>
+                <div class="week-card fade-in">
+                    <div class="week-num">Неделя 2</div>
+                    <h3>Производство</h3>
+                    <p>Съёмка, монтаж, публикация</p>
+                </div>
+                <div class="week-card fade-in">
+                    <div class="week-num">Неделя 3</div>
+                    <h3>Система</h3>
+                    <p>Воронка, хуки, удержание</p>
+                </div>
+                <div class="week-card fade-in">
+                    <div class="week-num">Неделя 4</div>
+                    <h3>Масштаб</h3>
+                    <p>Автоматизация и рост</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- ===== FOR WHO ===== -->
     <section>
-      <div class="container">
-        <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
-          Программа для тебя если...
-        </h2>
-        <div class="forwho-grid">
-          <div class="forwho-box fade-in">
-            <h3>Тебе подходит</h3>
-            <ul class="checklist check">
-              <li>
-                <span class="ico">✓</span>Хочешь привлекать клиентов без
-                рекламного бюджета
-              </li>
-              <li>
-                <span class="ico">✓</span>Готов(а) уделять 1-2 часа в день в
-                течение 4 недель
-              </li>
-              <li>
-                <span class="ico">✓</span>У тебя есть продукт или услуга которую
-                нужно продвигать
-              </li>
-              <li>
-                <span class="ico">✓</span>Хочешь выстроить личный бренд через
-                контент
-              </li>
-            </ul>
-          </div>
-          <div class="forwho-box nope fade-in">
-            <h3>Тебе не подходит</h3>
-            <ul class="checklist">
-              <li><span class="ico">✕</span>Ищешь быстрые схемы без работы</li>
-              <li>
-                <span class="ico">✕</span>Не готов(а) снимать и публиковать
-                контент
-              </li>
-            </ul>
-          </div>
+        <div class="container">
+            <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
+                Программа для тебя если...
+            </h2>
+            <div class="forwho-grid">
+                <div class="forwho-box fade-in">
+                    <h3>Тебе подходит</h3>
+                    <ul class="checklist check">
+                        <li><span class="ico">✓</span>Хочешь привлекать клиентов без рекламного бюджета</li>
+                        <li><span class="ico">✓</span>Готов(а) уделять 1-2 часа в день в течение 4 недель</li>
+                        <li><span class="ico">✓</span>У тебя есть продукт или услуга которую нужно продвигать</li>
+                        <li><span class="ico">✓</span>Хочешь выстроить личный бренд через контент</li>
+                    </ul>
+                </div>
+                <div class="forwho-box nope fade-in">
+                    <h3>Тебе не подходит</h3>
+                    <ul class="checklist">
+                        <li><span class="ico">✕</span>Ищешь быстрые схемы без работы</li>
+                        <li><span class="ico">✕</span>Не готов(а) снимать и публиковать контент</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- ===== FAQ ===== -->
     <section id="faq">
-      <div class="container">
-        <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
-          У тебя есть вопросы - у нас есть ответы
-        </h2>
-        <div class="faq-list">
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Кому Reach НЕ подойдёт?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Если ты не эксперт в своём деле, у тебя нет онлайн-бизнеса или
-                нет способа конвертировать миллионы заинтересованных зрителей -
-                я просто не твой человек. Но если у тебя есть онлайн-бизнес и ты
-                считаешь себя одним из лучших в своей сфере, ты не найдёшь более
-                прибыльного способа масштабировать свой бизнес, чем
-                присоединиться к Reach.
-              </p>
+        <div class="container">
+            <h2 class="section-heading center fade-in" style="margin-bottom: 48px">
+                У тебя есть вопросы - у нас есть ответы
+            </h2>
+            <div class="faq-list">
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Кому Reach НЕ подойдёт?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Если ты не эксперт в своём деле, у тебя нет онлайн-бизнеса или нет способа конвертировать миллионы заинтересованных зрителей - я просто не твой человек. Но если у тебя есть онлайн-бизнес и ты считаешь себя одним из лучших в своей
+                            сфере, ты не найдёшь более прибыльного способа масштабировать свой бизнес, чем присоединиться к Reach.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Каких результатов мне ожидать?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Это сильно зависит от того, каким клиентом ты окажешься. В худшем случае ты попробуешь, но без особых усилий, и уйдёшь с ростом контента в 1-1,5 раза от того, с чем пришёл. В лучшем случае ты внедряешь всё и получаешь результаты
+                            как Азамат, у которого было абсолютно 0 опыта в этой сфере, а в итоге он набрал 40 тысяч подписчиков и стабильно зарабатывает от 200 тыс. рублей на инфобизнесе. Но в среднем большинство клиентов видят рост просмотров в 2-3
+                            раза на нижней границе и в 10-20 раз на верхней, и уже окупают вложения в первый месяц.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Сколько это стоит?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Мы - самая премиальная программа на рынке, и цена постоянно растёт. Если для тебя приоритет - доступность, мы посоветуем другую программу. Если же твой приоритет - лучшие результаты в кратчайшие сроки и бренд, излучающий качество,
+                            - тебе понравится то, что мы представим на созвоне.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Нужна ли большая аудитория для старта?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Нет. Размер аудитории никогда не является проблемой - если проблема и есть, то она в самом клиенте. Пока ты эксперт, контент в приоритете и у тебя есть оффер для монетизации, Reach работает независимо от того, с чего ты начинаешь.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Сработает ли это в моей нише?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Да. Мы работали с сотнями владельцев бизнеса во всех мыслимых нишах, и ниша никогда не является проблемой - если проблема и есть, то она в самом клиенте. Пока ты эксперт в своём деле, контент в приоритете и у тебя есть оффер для
+                            монетизации, Reach сработает в твоей нише.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Что выбрать - Reach или агентство?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Ключевое отличие - в сценариях. В любом случае ты придумываешь идеи и снимаешь, а монтирует кто-то другой. В большинстве агентств сценарии пишет копирайтер, у которого нет твоих знаний и твоего голоса, - и это убивает качество.
+                            Reach даёт тебе наши системы, шаблоны и ИИ-инструменты, а затем я лично даю обратную связь по твоим сценариям и видео. Мы выяснили, что это даёт такой же или лучший результат, чем когда мы вели агентство под ключ, потому что
+                            никто не воспроизведёт твою экспертность лучше тебя. Если ты просто хочешь, чтобы контент публиковался, и результат тебе не важен - иди в агентство. Если важен результат - Reach.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Сколько времени это занимает?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>7-10 часов в неделю. Около часа в день. Меньше - значит недорабатывать, больше - перемудрить. Правильный настрой - смотреть не на потраченное время, а на отдачу с него. Приз - это бесконечный рычаг, и это игра по принципу «победитель
+                            забирает всё». Если ты не можешь выделить 7-10 часов, можешь даже не начинать.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">С какими платформами вы помогаете?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Короткий контент в Instagram, TikTok, Facebook, YouTube Shorts, LinkedIn и других. Основной фокус - Instagram, потому что он лучше всего подходит для привлечения клиентов, но хорошие видео работают везде - не нужно делать разный
+                            контент под каждую платформу. Как только короткий формат настроен, мы помогаем масштабировать результат с помощью ретаргетинговой рекламы, email и YouTube.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Есть ли у вас гарантия?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Да - гарантия для тех, кто действует. Пройди обучение, публикуй контент ежедневно и отправь минимум 10 видео на разбор. Если после этого ты почувствуешь, что не получил ценности, мы вернём деньги. Мы не даём гарантию «вернём в
+                            любом случае», потому что ею можно злоупотреблять. Наш уровень спорных ситуаций - 0,346%: 1 спор и 1 возврат на 289 клиентов в программах дороже $10K.</p>
+                    </div>
+                </div>
+                <div class="faq-item fade-in">
+                    <button class="faq-q">Чем вы отличаетесь от других?<span class="plus">+</span></button>
+                    <div class="faq-a">
+                        <p>Лучший способ ответить на это - просто посмотреть больше контента: нашего и других в этой сфере. Разница станет довольно очевидной. Если тебе откликается наш подход - отлично. Если тебе больше откликается кто-то другой - без обид,
+                            выбирай того, кто подходит тебе лучше всего. Что скажу точно - мы самый премиальный вариант на рынке, поэтому если для тебя приоритет доступность, советуем поискать в другом месте, пока ты не будешь готов к апгрейду.</p>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Каких результатов мне ожидать?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Это сильно зависит от того, каким клиентом ты окажешься. В
-                худшем случае ты попробуешь, но без особых усилий, и уйдёшь с
-                ростом контента в 1-1,5 раза от того, с чем пришёл. В лучшем
-                случае ты внедряешь всё и получаешь результаты как Азамат, у
-                которого было абсолютно 0 опыта в этой сфере, а в итоге он
-                набрал 40 тысяч подписчиков и стабильно зарабатывает от 200 тыс.
-                рублей на инфобизнесе. Но в среднем большинство клиентов видят
-                рост просмотров в 2-3 раза на нижней границе и в 10-20 раз на
-                верхней, и уже окупают вложения в первый месяц.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Сколько это стоит?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Мы - самая премиальная программа на рынке, и цена постоянно
-                растёт. Если для тебя приоритет - доступность, мы посоветуем
-                другую программу. Если же твой приоритет - лучшие результаты в
-                кратчайшие сроки и бренд, излучающий качество, - тебе понравится
-                то, что мы представим на созвоне.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Нужна ли большая аудитория для старта?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Нет. Размер аудитории никогда не является проблемой - если
-                проблема и есть, то она в самом клиенте. Пока ты эксперт,
-                контент в приоритете и у тебя есть оффер для монетизации, Reach
-                работает независимо от того, с чего ты начинаешь.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Сработает ли это в моей нише?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Да. Мы работали с сотнями владельцев бизнеса во всех мыслимых
-                нишах, и ниша никогда не является проблемой - если проблема и
-                есть, то она в самом клиенте. Пока ты эксперт в своём деле,
-                контент в приоритете и у тебя есть оффер для монетизации, Reach
-                сработает в твоей нише.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Что выбрать - Reach или агентство?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Ключевое отличие - в сценариях. В любом случае ты придумываешь
-                идеи и снимаешь, а монтирует кто-то другой. В большинстве
-                агентств сценарии пишет копирайтер, у которого нет твоих знаний
-                и твоего голоса, - и это убивает качество. Reach даёт тебе наши
-                системы, шаблоны и ИИ-инструменты, а затем я лично даю обратную
-                связь по твоим сценариям и видео. Мы выяснили, что это даёт
-                такой же или лучший результат, чем когда мы вели агентство под
-                ключ, потому что никто не воспроизведёт твою экспертность лучше
-                тебя. Если ты просто хочешь, чтобы контент публиковался, и
-                результат тебе не важен - иди в агентство. Если важен результат
-                - Reach.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Сколько времени это занимает?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                7-10 часов в неделю. Около часа в день. Меньше - значит
-                недорабатывать, больше - перемудрить. Правильный настрой -
-                смотреть не на потраченное время, а на отдачу с него. Приз - это
-                бесконечный рычаг, и это игра по принципу «победитель забирает
-                всё». Если ты не можешь выделить 7-10 часов, можешь даже не
-                начинать.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              С какими платформами вы помогаете?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Короткий контент в Instagram, TikTok, Facebook, YouTube Shorts,
-                LinkedIn и других. Основной фокус - Instagram, потому что он
-                лучше всего подходит для привлечения клиентов, но хорошие видео
-                работают везде - не нужно делать разный контент под каждую
-                платформу. Как только короткий формат настроен, мы помогаем
-                масштабировать результат с помощью ретаргетинговой рекламы,
-                email и YouTube.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Есть ли у вас гарантия?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Да - гарантия для тех, кто действует. Пройди обучение, публикуй
-                контент ежедневно и отправь минимум 10 видео на разбор. Если
-                после этого ты почувствуешь, что не получил ценности, мы вернём
-                деньги. Мы не даём гарантию «вернём в любом случае», потому что
-                ею можно злоупотреблять. Наш уровень спорных ситуаций - 0,346%:
-                1 спор и 1 возврат на 289 клиентов в программах дороже $10K.
-              </p>
-            </div>
-          </div>
-          <div class="faq-item fade-in">
-            <button class="faq-q">
-              Чем вы отличаетесь от других?<span class="plus">+</span>
-            </button>
-            <div class="faq-a">
-              <p>
-                Лучший способ ответить на это - просто посмотреть больше
-                контента: нашего и других в этой сфере. Разница станет довольно
-                очевидной. Если тебе откликается наш подход - отлично. Если тебе
-                больше откликается кто-то другой - без обид, выбирай того, кто
-                подходит тебе лучше всего. Что скажу точно - мы самый
-                премиальный вариант на рынке, поэтому если для тебя приоритет
-                доступность, советуем поискать в другом месте, пока ты не будешь
-                готов к апгрейду.
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- ===== CTA ===== -->
     <section id="cta" class="cta-section">
-      <div class="container">
-        <div class="live-badge fade-in">
-          <span class="live-dot"></span>3 места осталось
+        <div class="container">
+            <div class="live-badge fade-in">
+                <span class="live-dot"></span>3 места осталось
+            </div>
+            <h2 class="fade-in">Хватит искать - начни производить</h2>
+            <div class="fade-in">
+                <button id="openModalBtn" class="btn btn-lg">Оставить заявку →</button>
+            </div>
         </div>
-        <h2 class="fade-in">Хватит искать - начни производить</h2>
-        <div class="fade-in">
-          <button id="openModalBtn" class="btn btn-lg">
-            Оставить заявку →
-          </button>
-        </div>
-        <!-- <div class="modal">
-        <h2 class="modal_title">
-          Оставить заявку
-        </h2>
-        <p class="modal_text">
-          Заполните форму, и мы свяжемся с вами в ближайшее время
-        </p>
-        <form class="modal_form">
-          <div class="modal_form-group">
-            <label for="name" class="modal_form-label">
-              Имя
-            </label>
-            <input type="text" id="name" class="modal_form-input">
-          </div>
-          <button class="modal_form-btn">
-            Отправить
-          </button>
-          <span class="modal_form-subText">
-            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
-          </span>
-        </form>
-      </div> -->
-      </div>
     </section>
 
+    <!-- ===== MODAL ===== -->
     <div id="requestModal" class="request-modal-overlay">
-      <div class="request-modal">
-        <button class="request-modal__close">×</button>
-
-        <h2 class="request-modal__title">Оставить заявку</h2>
-
-        <p class="request-modal__subtitle">
-          Заполните форму, и мы свяжемся с вами в ближайшее время
-        </p>
-
-        <form class="request-modal__form">
-          <div class="request-modal__group">
-            <label class="request-modal__label"> ИМЯ </label>
-
-            <input
-              type="text"
-              class="request-modal__input"
-              placeholder="Ваше имя"
-            />
-          </div>
-
-          <div class="request-modal__group">
-            <label class="request-modal__label"> TELEGRAM </label>
-
-            <input
-              type="text"
-              class="request-modal__input"
-              placeholder="@username"
-            />
-          </div>
-
-          <div class="request-modal__group">
-            <label class="request-modal__label">
-              КАК СИСТЕМА МОЖЕТ ПОМОЧЬ ВАМ
-            </label>
-
-            <textarea
-              class="request-modal__textarea"
-              placeholder="Ваш ответ"
-            ></textarea>
-          </div>
-
-          <button type="submit" class="request-modal__submit">
-            Отправить →
-          </button>
-        </form>
-
-        <p class="request-modal__privacy">
-          Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
-        </p>
-      </div>
+        <div class="request-modal">
+            <button class="request-modal__close">×</button>
+            <h2 class="request-modal__title">Оставить заявку</h2>
+            <p class="request-modal__subtitle">Заполните форму, и мы свяжемся с вами в ближайшее время</p>
+            <form class="request-modal__form">
+                <div class="request-modal__group">
+                    <label class="request-modal__label">ИМЯ</label>
+                    <input type="text" class="request-modal__input" placeholder="Ваше имя" />
+                </div>
+                <div class="request-modal__group">
+                    <label class="request-modal__label">TELEGRAM</label>
+                    <input type="text" class="request-modal__input" placeholder="@username" />
+                </div>
+                <div class="request-modal__group">
+                    <label class="request-modal__label">КАК СИСТЕМА МОЖЕТ ПОМОЧЬ ВАМ</label>
+                    <textarea class="request-modal__textarea" placeholder="Ваш ответ"></textarea>
+                </div>
+                <button type="submit" class="request-modal__submit">Отправить →</button>
+            </form>
+            <p class="request-modal__privacy">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.</p>
+        </div>
     </div>
 
     <!-- ===== FOOTER ===== -->
     <footer>
-      <div class="container">
-        <div class="logo" style="justify-content: center">
-          <img src="pics/logo.png" alt="Reach" />
+        <div class="container">
+            <div class="logo" style="justify-content: center">
+                <img src="pics/logo.png" alt="Reach" />
+            </div>
+            <p class="copy">© 2025 Reach. Все права защищены.</p>
+            <p class="copy" style="margin-top: 8px">
+                Telegram: <a href="https://t.me/ProAi_manager">@ProAi_manager</a>
+            </p>
         </div>
-        <p class="copy">© 2025 Reach. Все права защищены.</p>
-        <p class="copy" style="margin-top: 8px">
-          Telegram: <a href="https://t.me/ProAi_manager">@ProAi_manager</a>
-        </p>
-      </div>
     </footer>
 
-    <script></script>
-
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>

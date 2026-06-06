@@ -1,117 +1,218 @@
+// ===== Modal =====
 const modal = document.getElementById("requestModal");
 const openBtn = document.getElementById("openModalBtn");
 const closeBtn = document.querySelector(".request-modal__close");
 
 openBtn.addEventListener("click", () => {
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
 });
 
 closeBtn.addEventListener("click", () => {
-  modal.classList.remove("active");
-  document.body.style.overflow = "";
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
 });
 
 modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
+    if (e.target === modal) {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
 });
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
+    if (e.key === "Escape") {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
 });
 
 // ===== Hamburger nav (mobile) =====
 const hamburger = document.getElementById("hamburger");
 const nav = document.getElementById("nav");
 hamburger.addEventListener("click", () => nav.classList.toggle("open"));
-nav
-  .querySelectorAll(".nav-cta, .nav-links a")
-  .forEach((el) =>
-    el.addEventListener("click", () => nav.classList.remove("open")),
-  );
+nav.querySelectorAll(".nav-cta, .nav-links a").forEach((el) =>
+    el.addEventListener("click", () => nav.classList.remove("open"))
+);
 
 // ===== FAQ accordion =====
 document.querySelectorAll(".faq-q").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const item = btn.parentElement;
-    const answer = item.querySelector(".faq-a");
-    const isOpen = item.classList.contains("open");
-    // close all
-    document.querySelectorAll(".faq-item").forEach((i) => {
-      i.classList.remove("open");
-      i.querySelector(".faq-a").style.maxHeight = null;
+    btn.addEventListener("click", () => {
+        const item = btn.parentElement;
+        const answer = item.querySelector(".faq-a");
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item").forEach((i) => {
+            i.classList.remove("open");
+            i.querySelector(".faq-a").style.maxHeight = null;
+        });
+        if (!isOpen) {
+            item.classList.add("open");
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        }
     });
-    if (!isOpen) {
-      item.classList.add("open");
-      answer.style.maxHeight = answer.scrollHeight + "px";
-    }
-  });
 });
 
 // ===== Intersection Observer fade-in =====
 const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 },
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 }
 );
 document.querySelectorAll(".fade-in").forEach((el) => observer.observe(el));
 
-// ===== Animated count-up on appearance =====
+// ===== Animated count-up =====
 function formatNum(n, sep) {
-  n = Math.round(n);
-  return sep ? n.toLocaleString("ru-RU") : String(n);
+    n = Math.round(n);
+    return sep ? n.toLocaleString("ru-RU") : String(n);
 }
 const countObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const to = parseFloat(el.dataset.to);
-      const sep = el.dataset.sep === "1";
-      const duration = 1600;
-      const start = performance.now();
-      function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
-        el.textContent = formatNum(to * eased, sep);
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = formatNum(to, sep);
-      }
-      requestAnimationFrame(tick);
-      countObserver.unobserve(el);
-    });
-  },
-  { threshold: 0.5 },
+    (entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const to = parseFloat(el.dataset.to);
+            const sep = el.dataset.sep === "1";
+            const duration = 1600;
+            const start = performance.now();
+
+            function tick(now) {
+                const p = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = formatNum(to * eased, sep);
+                if (p < 1) requestAnimationFrame(tick);
+                else el.textContent = formatNum(to, sep);
+            }
+            requestAnimationFrame(tick);
+            countObserver.unobserve(el);
+        });
+    }, { threshold: 0.5 }
 );
 document.querySelectorAll(".count").forEach((el) => countObserver.observe(el));
 
-// ===== YouTube click-to-play (lite facade) =====
-document.querySelectorAll(".yt-lite").forEach((box) => {
-  box.addEventListener(
-    "click",
-    () => {
-      const id = box.dataset.id;
-      const iframe = document.createElement("iframe");
-      iframe.src = "https://www.youtube.com/embed/" + id + "?enablejsapi=1&autoplay=1&rel=0";
-      iframe.title = "Видео";
-      iframe.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.allowFullscreen = true;
-      box.innerHTML = "";
-      box.appendChild(iframe);
-    },
-    { once: true },
-  );
+// ===== YouTube Analytics =====
+let ytPlayer = null;
+let ytProgressTimer = null;
+const ytMilestones = [10, 25, 50, 75, 90];
+const ytFired = new Set();
+
+// YouTube уже загружен как iframe — инициализируем player сразу
+window.onYouTubeIframeAPIReady = function() {
+    ytPlayer = new YT.Player("yt-case-iframe", {
+        events: {
+            onStateChange: function(e) {
+                if (e.data === YT.PlayerState.PLAYING) {
+                    // Трекаем первый Play
+                    if (!ytFired.has("play")) {
+                        ytFired.add("play");
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            event: "video_play_click",
+                            video_title: "Кейс ученика - Азамат",
+                            video_provider: "youtube",
+                        });
+                    }
+                    startYTTracking();
+                }
+                if (
+                    e.data === YT.PlayerState.PAUSED ||
+                    e.data === YT.PlayerState.ENDED
+                ) {
+                    clearInterval(ytProgressTimer);
+                }
+            },
+        },
+    });
+};
+
+function startYTTracking() {
+    clearInterval(ytProgressTimer);
+    ytProgressTimer = setInterval(() => {
+        if (!ytPlayer || typeof ytPlayer.getDuration !== "function") return;
+        const duration = ytPlayer.getDuration();
+        if (!duration) return;
+        const percent = Math.floor((ytPlayer.getCurrentTime() / duration) * 100);
+        ytMilestones.forEach((m) => {
+            if (percent >= m && !ytFired.has(m)) {
+                ytFired.add(m);
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: "video_milestone",
+                    video_title: "Кейс ученика - Азамат",
+                    video_percent: m,
+                    video_provider: "youtube",
+                });
+            }
+        });
+    }, 1000);
+}
+
+// ===== Kinescope Analytics (VSL) =====
+const kinescopeMilestones = [10, 25, 50, 75, 90];
+const kinescopeFired = new Set();
+let kinescopeDuration = null;
+
+window.addEventListener("message", function(e) {
+    if (!e.data || typeof e.data !== "object") return;
+    const d = e.data;
+
+    if (d.event === "play") {
+        if (!kinescopeFired.has("play")) {
+            kinescopeFired.add("play");
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "video_play_click",
+                video_title: "VSL - Reach",
+                video_provider: "kinescope",
+            });
+        }
+    }
+
+    if (d.event === "durationchange" && d.data && d.data.duration) {
+        kinescopeDuration = d.data.duration;
+    }
+
+    if (d.event === "timeupdate" && d.data && d.data.currentTime && kinescopeDuration) {
+        const percent = Math.floor((d.data.currentTime / kinescopeDuration) * 100);
+        kinescopeMilestones.forEach((m) => {
+            if (percent >= m && !kinescopeFired.has(m)) {
+                kinescopeFired.add(m);
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: "video_milestone",
+                    video_title: "VSL - Reach",
+                    video_percent: m,
+                    video_provider: "kinescope",
+                });
+            }
+        });
+    }
 });
+
+// ===== Scroll to video tracking =====
+const scrollTrackFired = new Set();
+const scrollTracker = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            if (!scrollTrackFired.has(id)) {
+                scrollTrackFired.add(id);
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: "video_section_visible",
+                    video_title: id === "vsl" ? "VSL - Reach" : "Кейс ученика - Азамат",
+                });
+            }
+        });
+    }, { threshold: 0.5 }
+);
+
+const vslSection = document.getElementById("vsl");
+const caseSection = document.getElementById("case");
+if (vslSection) scrollTracker.observe(vslSection);
+if (caseSection) scrollTracker.observe(caseSection);
