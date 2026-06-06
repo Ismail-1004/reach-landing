@@ -176,10 +176,7 @@ window.addEventListener('load', async function() {
         });
 
         player.on('timeupdate', function(e) {
-            const currentTime = e.currentTime;
-            const duration = e.duration;
-            if (!duration) return;
-            const percent = Math.floor((currentTime / duration) * 100);
+            const percent = e.data.percent;
             kinescopeMilestones.forEach((m) => {
                 if (percent >= m && !kinescopeFired.has(m)) {
                     kinescopeFired.add(m);
@@ -223,8 +220,3 @@ const vslSection = document.getElementById("vsl");
 const caseSection = document.getElementById("case");
 if (vslSection) scrollTracker.observe(vslSection);
 if (caseSection) scrollTracker.observe(caseSection);
-
-
-const iframe = document.querySelector('#vsl iframe');
-console.log('iframe src:', iframe.src);
-console.log('iframe id:', iframe.id);
