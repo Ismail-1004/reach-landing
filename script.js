@@ -154,47 +154,77 @@ function startYTTracking() {
 // ===== Kinescope Analytics (VSL) =====
 const kinescopeMilestones = [10, 25, 50, 75, 90];
 const kinescopeFired = new Set();
-let kinescopeDuration = null;
 
-window.addEventListener('message', function(e) {
-    if (!e.data || typeof e.data !== 'object') return;
-    const d = e.data;
-    const type = d.type || d.event || '';
+function initKinescopeAnalytics() {
+    const iframe = document.querySelector('#vsl iframe');
+    if (!iframe) return;
 
-    // Play
-    if (type === 'KINESCOPE_PLAYER_PLAY_EVENT' || type === 'play') {
-        if (!kinescopeFired.has('play')) {
-            kinescopeFired.add('play');
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: 'video_play_click',
-                video_title: 'VSL - Reach',
-                video_provider: 'kinescope',
-            });
-        }
+    // Используем Kinescope Player API через postMessage
+    function sendToKinescope(method, args) {
+        iframe.contentWindow.postMessage(
+            JSON.stringify({ method, args }),
+            'https://kinescope.io'
+        );
     }
 
-    // Длительность
-    if ((type === 'KINESCOPE_PLAYER_DURATION_CHANGE_EVENT' || type === 'durationchange') && d.data && d.data.duration) {
-        kinescopeDuration = d.data.duration;
-    }
+    let kinescopeTimer = null;
+    let duration = null;
 
-    // Прогресс
-    if ((type === 'KINESCOPE_PLAYER_TIME_UPDATE_EVENT' || type === 'timeupdate') && d.data && d.data.currentTime && kinescopeDuration) {
-        const percent = Math.floor((d.data.currentTime / kinescopeDuration) * 100);
-        kinescopeMilestones.forEach((m) => {
-            if (percent >= m && !kinescopeFired.has(m)) {
-                kinescopeFired.add(m);
+    window.addEventListener('message', function(e) {
+        if (!e.data || typeof e.data !== 'object') return;
+        const type = e.data.type || '';
+
+        // Play
+        if (type === 'KINESCOPE_PLAYER_PLAY_EVENT') {
+            if (!kinescopeFired.has('play')) {
+                kinescopeFired.add('play');
+                window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({
-                    event: 'video_milestone',
+                    event: 'video_play_click',
                     video_title: 'VSL - Reach',
-                    video_percent: m,
                     video_provider: 'kinescope',
                 });
             }
-        });
-    }
-});
+
+            // Запускаем polling каждую секунду
+            clearInterval(kinescopeTimer);
+            kinescopeTimer = setInterval(function() {
+                sendToKinescope('getDuration', []);
+                sendToKinescope('getCurrentTime', []);
+            }, 1000);
+        }
+
+        // Пауза / конец
+        if (type === 'KINESCOPE_PLAYER_PAUSE_EVENT' || type === 'KINESCOPE_PLAYER_ENDED_EVENT') {
+            clearInterval(kinescopeTimer);
+        }
+
+        // Ответы на getDuration / getCurrentTime
+        if (e.data.event === 'infoDelivery' && e.data.info) {
+            const info = e.data.info;
+
+            if (info.duration) duration = info.duration;
+
+            if (info.currentTime && duration) {
+                const percent = Math.floor((info.currentTime / duration) * 100);
+                kinescopeMilestones.forEach((m) => {
+                    if (percent >= m && !kinescopeFired.has(m)) {
+                        kinescopeFired.add(m);
+                        window.dataLayer = window.dataLayer || [];
+                        window.dataLayer.push({
+                            event: 'video_milestone',
+                            video_title: 'VSL - Reach',
+                            video_percent: m,
+                            video_provider: 'kinescope',
+                        });
+                    }
+                });
+            }
+        }
+    });
+}
+
+window.addEventListener('load', initKinescopeAnalytics);
 
 // ===== Scroll to video tracking =====
 const scrollTrackFired = new Set();
@@ -219,7 +249,3 @@ const vslSection = document.getElementById("vsl");
 const caseSection = document.getElementById("case");
 if (vslSection) scrollTracker.observe(vslSection);
 if (caseSection) scrollTracker.observe(caseSection);
-
-window.addEventListener('message', function(e) {
-    console.log('MESSAGE:', e.data);
-});
