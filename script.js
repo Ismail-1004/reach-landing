@@ -154,14 +154,16 @@ function startYTTracking() {
 // ===== Kinescope Analytics (VSL) =====
 const kinescopeMilestones = [10, 25, 50, 75, 90];
 const kinescopeFired = new Set();
+let kinescopeTimer = null;
+let kinescopeDuration = null;
+let kinescopeCurrentTime = 0;
 
-window.addEventListener('load', function() {
-    const iframe = document.querySelector('#vsl iframe');
-    if (!iframe || typeof Kinescope === 'undefined') return;
+window.addEventListener('message', function(e) {
+    if (!e.data || typeof e.data !== 'object') return;
+    const type = e.data.type || e.data.event || '';
 
-    const player = Kinescope.IframePlayer.create(iframe);
-
-    player.on(Kinescope.Events.Play, function() {
+    // Play — запускаем polling
+    if (type === 'KINESCOPE_PLAYER_PLAY_EVENT') {
         if (!kinescopeFired.has('play')) {
             kinescopeFired.add('play');
             window.dataLayer = window.dataLayer || [];
@@ -171,27 +173,57 @@ window.addEventListener('load', function() {
                 video_provider: 'kinescope',
             });
         }
-    });
+        startKinescopePolling();
+    }
 
-    player.on(Kinescope.Events.TimeUpdate, function(e) {
-        const duration = e.detail.duration;
-        const currentTime = e.detail.currentTime;
-        if (!duration) return;
-        const percent = Math.floor((currentTime / duration) * 100);
-        kinescopeMilestones.forEach((m) => {
-            if (percent >= m && !kinescopeFired.has(m)) {
-                kinescopeFired.add(m);
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    event: 'video_milestone',
-                    video_title: 'VSL - Reach',
-                    video_percent: m,
-                    video_provider: 'kinescope',
-                });
-            }
-        });
-    });
+    // Пауза/конец — останавливаем
+    if (type === 'KINESCOPE_PLAYER_PAUSE_EVENT' || type === 'KINESCOPE_PLAYER_ENDED_EVENT') {
+        clearInterval(kinescopeTimer);
+    }
+
+    // Ответы от iframe YouTube API (infoDelivery содержит currentTime и duration)
+    if (e.data.event === 'infoDelivery' && e.data.info) {
+        if (e.data.info.duration) kinescopeDuration = e.data.info.duration;
+        if (e.data.info.currentTime !== undefined) kinescopeCurrentTime = e.data.info.currentTime;
+        checkKinescopeMilestone();
+    }
 });
+
+function startKinescopePolling() {
+    clearInterval(kinescopeTimer);
+    const iframe = document.querySelector('#vsl iframe');
+    if (!iframe) return;
+
+    kinescopeTimer = setInterval(function() {
+        // Запрашиваем текущее время через postMessage
+        iframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }),
+            '*'
+        );
+        iframe.contentWindow.postMessage(
+            JSON.stringify({ event: 'command', func: 'getCurrentTime', args: [], id: 1 }),
+            '*'
+        );
+    }, 1500);
+}
+
+function checkKinescopeMilestone() {
+    if (!kinescopeDuration || !kinescopeCurrentTime) return;
+    const percent = Math.floor((kinescopeCurrentTime / kinescopeDuration) * 100);
+    kinescopeMilestones.forEach((m) => {
+        if (percent >= m && !kinescopeFired.has(m)) {
+            kinescopeFired.add(m);
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'video_milestone',
+                video_title: 'VSL - Reach',
+                video_percent: m,
+                video_provider: 'kinescope',
+            });
+            console.log('MILESTONE:', m + '%');
+        }
+    });
+}
 
 // ===== Scroll to video tracking =====
 const scrollTrackFired = new Set();
