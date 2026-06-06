@@ -157,7 +157,10 @@ const kinescopeFired = new Set();
 
 window.addEventListener('load', async function() {
     try {
-        const player = await Kinescope.IframePlayer.create('kinescope-player');
+        const player = await Kinescope.IframePlayer.create('kinescope-player', {
+            url: 'https://kinescope.io/oT68boePT7kxuwbxAToVVV',
+            size: { width: '100%', height: '100%' },
+        });
 
         player.on('play', function() {
             if (!kinescopeFired.has('play')) {
@@ -173,8 +176,8 @@ window.addEventListener('load', async function() {
         });
 
         player.on('timeupdate', function(e) {
-            console.log('KINESCOPE timeupdate:', e);
-            const { currentTime, duration } = e;
+            const currentTime = e.currentTime;
+            const duration = e.duration;
             if (!duration) return;
             const percent = Math.floor((currentTime / duration) * 100);
             kinescopeMilestones.forEach((m) => {
