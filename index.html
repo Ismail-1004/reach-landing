@@ -64,7 +64,7 @@
                     <a href="#faq">Вопросы</a>
                 </div>
             </div>
-            <a href="#cta" class="btn nav-cta">Оставить заявку</a>
+            <button class="btn nav-cta" onclick="openModal()">Оставить заявку</button>
             <button class="hamburger" id="hamburger" aria-label="Меню">
           <span></span><span></span><span></span>
         </button>
@@ -87,7 +87,7 @@
             <div class="video-wrap fade-in">
                 <div id="kinescope-player"></div>
             </div>
-            <a href="#cta" class="btn btn-lg fade-in">Оставить заявку</a>
+            <button onclick="openModal()" class="btn btn-lg fade-in">Оставить заявку</button>
         </div>
     </section>
 
@@ -333,7 +333,7 @@
             </div>
             <h2 class="fade-in">Хватит искать - начни производить</h2>
             <div class="fade-in">
-                <button id="openModalBtn" class="btn btn-lg">Оставить заявку →</button>
+                <button id="openModalBtn" onclick="openModal()" class="btn btn-lg">Оставить заявку →</button>
             </div>
         </div>
     </section>
@@ -347,15 +347,15 @@
             <form class="request-modal__form">
                 <div class="request-modal__group">
                     <label class="request-modal__label">ИМЯ</label>
-                    <input type="text" class="request-modal__input" placeholder="Ваше имя" />
+                    <input type="text" class="request-modal__input" required placeholder="Ваше имя" />
                 </div>
                 <div class="request-modal__group">
                     <label class="request-modal__label">TELEGRAM</label>
-                    <input type="text" class="request-modal__input" placeholder="@username" />
+                    <input type="text" class="request-modal__input" required placeholder="@username" />
                 </div>
                 <div class="request-modal__group">
                     <label class="request-modal__label">КАК СИСТЕМА МОЖЕТ ПОМОЧЬ ВАМ</label>
-                    <textarea class="request-modal__textarea" placeholder="Ваш ответ"></textarea>
+                    <textarea class="request-modal__textarea" placeholder="Ваш ответ" required></textarea>
                 </div>
                 <button type="submit" class="request-modal__submit">Отправить →</button>
             </form>

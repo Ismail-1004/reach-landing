@@ -3,10 +3,10 @@ const modal = document.getElementById("requestModal");
 const openBtn = document.getElementById("openModalBtn");
 const closeBtn = document.querySelector(".request-modal__close");
 
-openBtn.addEventListener("click", () => {
+function openModal() {
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
-});
+}
 
 closeBtn.addEventListener("click", () => {
     modal.classList.remove("active");
@@ -220,3 +220,45 @@ const vslSection = document.getElementById("vsl");
 const caseSection = document.getElementById("case");
 if (vslSection) scrollTracker.observe(vslSection);
 if (caseSection) scrollTracker.observe(caseSection);
+
+const form = document.querySelector(".request-modal__form");
+const submitBtn = document.querySelector('.request-modal__submit')
+
+form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const inputs = form.querySelectorAll("input");
+    const textarea = form.querySelector("textarea");
+
+    const data = {
+        name: inputs[0].value.trim(),
+        username: inputs[1].value.trim(),
+        howToHelp: textarea.value.trim()
+    };
+
+    try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Отправляем...";
+
+        const response = await fetch("http://72.60.17.104:3000/api/application", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) throw new Error("Server error");
+
+        form.reset();
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+
+        alert("✅ Заявка отправлена!");
+
+    } catch (err) {
+        console.error(err);
+        alert("❌ Ошибка отправки. Попробуйте позже.");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Отправить";
+    }
+});
