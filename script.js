@@ -222,9 +222,10 @@ if (vslSection) scrollTracker.observe(vslSection);
 if (caseSection) scrollTracker.observe(caseSection);
 
 const form = document.querySelector(".request-modal__form");
+const submitBtn = document.querySelector('.request-modal__submit')
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault(); 
+form.addEventListener("submit", async function(e) {
+    e.preventDefault();
 
     const inputs = form.querySelectorAll("input");
     const textarea = form.querySelector("textarea");
@@ -235,5 +236,29 @@ form.addEventListener("submit", function (e) {
         howToHelp: textarea.value.trim()
     };
 
-    console.log(data);
+    try {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Отправляем...";
+
+        const response = await fetch("http://72.60.17.104:3000/api/application", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) throw new Error("Server error");
+
+        form.reset();
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+
+        alert("✅ Заявка отправлена!");
+
+    } catch (err) {
+        console.error(err);
+        alert("❌ Ошибка отправки. Попробуйте позже.");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Отправить";
+    }
 });
