@@ -240,7 +240,7 @@ form.addEventListener("submit", async function(e) {
         submitBtn.disabled = true;
         submitBtn.textContent = "Отправляем...";
 
-        const response = await fetch("http://72.60.17.104:3000/api/application", {
+        const response = await fetch("https://api.reachsys.net/api/application", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
