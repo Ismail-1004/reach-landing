@@ -233,6 +233,7 @@ form.addEventListener("submit", async function(e) {
     const data = {
         name: inputs[0].value.trim(),
         username: inputs[1].value.trim(),
+        howDidKnow: inputs[2].value.trim(),
         howToHelp: textarea.value.trim()
     };
 
