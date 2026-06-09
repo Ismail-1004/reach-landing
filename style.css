@@ -1315,6 +1315,35 @@ footer .copy {
     font-weight: bold;
 }
 
+#case::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+#case::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 180px;
+    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+#case .container {
+    position: relative;
+    z-index: 3;
+}
+
 .bg-section {
     position: absolute;
     inset: 0;
@@ -1339,6 +1368,13 @@ footer .copy {
 
 #for-who {
     margin-top: 50px;
+}
+
+.vsl-btn-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 
@@ -1528,8 +1564,8 @@ footer .copy {
     .hero h1 {
         font-size: 24px;
     }
-    .hero-subline span {
-        font-size: 13px;
+    .hero .container {
+        padding: 0;
     }
     .metrics {
         grid-template-columns: 1fr 1fr;
