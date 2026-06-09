@@ -1453,6 +1453,7 @@ footer .copy {
         font-size: clamp(11px, 4vw, 12px);
         font-weight: 900;
         width: 100%;
+        text-align: left;
     }
     /* ── Marquee ── */
     .marquee {
