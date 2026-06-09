@@ -102,7 +102,7 @@ section {
     border-radius: 12px;
     border: none;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.5s ease, background 0.2s ease;
 }
 
 .btn:hover {
@@ -152,6 +152,54 @@ nav {
     display: flex;
     align-items: center;
     gap: 32px;
+}
+
+.nav-cta-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-spots {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #f87171;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.nav-spots-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ef4444;
+    position: relative;
+}
+
+.nav-spots-dot::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: navPulse 1.5s infinite;
+}
+
+@keyframes navPulse {
+    from {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
 }
 
 .logo {
@@ -974,7 +1022,7 @@ footer .copy {
 .fade-in {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.5s ease, ;
 }
 
 .fade-in.visible {
@@ -1006,6 +1054,9 @@ footer .copy {
         display: none;
     }
     .nav-cta {
+        display: none;
+    }
+    .nav-spots {
         display: none;
     }
     .logo img {
@@ -1042,6 +1093,13 @@ footer .copy {
     }
     .marquee-track span {
         font-size: 16px;
+    }
+    nav.open .nav-spots {
+        display: flex;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
@@ -1275,7 +1333,7 @@ footer .copy {
 .bg-section-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient( 180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .35) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, .35) 100%);
     z-index: 1;
 }
 
