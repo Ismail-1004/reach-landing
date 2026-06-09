@@ -289,7 +289,7 @@ nav {
 
 .hero-subline {
     color: var(--muted);
-    max-width: 900px;
+    max-width: max-content;
     margin: 0 auto;
 }
 
@@ -1449,11 +1449,16 @@ footer .copy {
         font-size: clamp(26px, 7vw, 40px);
         margin-bottom: 5px;
     }
-    .hero-subline span {
-        font-size: clamp(11px, 4vw, 12px);
-        font-weight: 900;
+    .hero-subline {
         width: 100%;
-        text-align: left;
+        padding: 0;
+    }
+    .hero-subline span {
+        font-size: clamp(12px, 7vw, 12px);
+        font-weight: 900;
+        min-width: 100%;
+        display: inline-block;
+        padding: 0;
     }
     /* ── Marquee ── */
     .marquee {
